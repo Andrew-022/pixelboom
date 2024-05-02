@@ -1,0 +1,67 @@
+.gamePreview p{
+  margin-top: 0;
+}
+
+.gamePreview b{
+  text-align: center;
+}
+.gamePreview {
+  display: flex;
+  height: 100%;
+  text-align: center;
+  font-size: 70%;
+  padding: 10px;
+  cursor: pointer;
+  flex-direction: column;
+  background-color: #D9D9D9;
+}
+
+.gameCover {
+  width: 100%;
+  flex: 1;
+  border: 2px solid red;
+  border-radius: 10px;
+}
+
+.gameCover.good{
+  border: 2px solid green;
+}
+
+.gameCover.mid{
+  border: 2px solid yellow;
+}
+
+.gameInfo{
+  display: flex;
+  padding: 4%;
+}
+
+.gameTitle{
+  padding-top: 2%;
+  font-size: 250%;
+}
+
+.puntuacion-circulo{
+  width: 75px; /* Ajusta el tamaño del círculo según tus necesidades */
+  height: 75px;
+  border-radius: 50%; /* Hace que el borde sea redondeado, creando un círculo */
+  background-color: red; /* Puedes cambiar el color de fondo según tus preferencias */
+  text-align: center; /* Centra el contenido del párrafo dentro del círculo */
+  line-height: 75px;
+  font-size: 300%;
+  font-weight: bold;
+  margin-left: auto;
+  margin-bottom: 0;
+}
+
+.puntuacion-circulo.good{
+  background-color: green;
+}
+
+.puntuacion-circulo.mid{
+  background-color: yellow;
+}
+
+.review{
+  font-size: 150%;
+}

@@ -1,0 +1,8 @@
+<div class="gamePreview">
+  <img class="gameCover" src="{{game.cover}}" [class.good]="game.score > 70" [class.mid]="game.score<=70 && game.score>35" alt="{{game.name}}">
+  <b class="gameTitle">{{ game.name }}</b>
+  <div class="gameInfo">
+    <p class="review">Basado en {{game.nReviews}} reviews</p>
+    <p id="puntuation" class="puntuacion-circulo" [class.good]="game.score > 70" [class.mid]="game.score<=70 && game.score>35">{{game.score}} </p>
+  </div>
+</div>
