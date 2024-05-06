@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {GameViewComponent} from "../game-view/game-view.component";
+import {game} from "../model/game";
+import { firebaseRepository } from "../services/firebaseRepository";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -11,5 +14,20 @@ import {GameViewComponent} from "../game-view/game-view.component";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  games: game[] = [];
+
+  constructor(private firebaseRepository: firebaseRepository) { }
+  async ngOnInit(): Promise<void> {
+    this.firebaseRepository.getAllGames()
+      .then((booksObservable: Observable<game[]>) => {
+        booksObservable.subscribe((games: game[]) => {
+          this.games = games;
+        });
+      })
+      .catch((error) => {
+        console.error("Error al obtener los juegos:", error);
+      });
+  }
 
 }

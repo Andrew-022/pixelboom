@@ -1,0 +1,150 @@
+.navbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #494949;
+}
+
+.navbar .container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.logo {
+  cursor: pointer;
+  width: 10%;
+  height: auto;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0.5em;
+  padding-left: 0;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-link.account {
+  padding-left: 0.5em;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}
+
+.account-items {
+  display: flex;
+  flex-flow: row;
+}
+
+.navbar-brand, .search-form, .account, .session, .cart {
+  padding: 0em 1em 0em 1em;
+}
+.account *, .session *, .cart * {
+  cursor: pointer;
+}
+
+.search-container {
+  position: relative;
+}
+
+
+.search-form button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.dropbtn {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  color: black;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn span{
+  color: black;
+}

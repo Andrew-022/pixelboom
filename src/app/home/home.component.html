@@ -4,10 +4,11 @@
   <div id= "textOpinion" class="centered-word">Juegos Top/Novedades</div>
   <div class="line"></div>
 </div>
-</body>
 <article class="games">
-  <app-game-view></app-game-view>
-  <app-game-view></app-game-view>
-  <app-game-view></app-game-view>
+  @for(game of games; track game) {
+    <app-game-view [game] = "game" ></app-game-view>
+  }
 </article>
+</body>
+
 
