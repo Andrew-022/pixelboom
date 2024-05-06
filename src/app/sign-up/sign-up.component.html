@@ -5,6 +5,9 @@
     <div class="popup-title">Únete a PixelBoom</div>
   </div>
   <form class="popup-form" id="popup-form" [formGroup]="registerForm" (ngSubmit)="submit()" >
+    @if (message){
+      <div>{{message}}</div>
+    }
 
     <label class="popup-label" for="name">Nombre</label>
     <input class="popup-input" type="text" id="name" formControlName="nombre" required>

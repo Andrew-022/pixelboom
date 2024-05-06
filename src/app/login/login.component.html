@@ -4,6 +4,7 @@
     <img src="assets/Logo.png" class="popup-icon">
     <div class="popup-title">Inicia sesión en PixelBoom</div>
   </div>
+  <div class="loginmsg">{{ loginMsg }}</div>
   <form class="popup-form" id="popup-form" [formGroup]="loginForm" (ngSubmit)="submit()">
     <label class="popup-label" for="username">Correo electrónico</label>
     <input class="popup-input" type="text" id="username" formControlName="loginMail" required>
