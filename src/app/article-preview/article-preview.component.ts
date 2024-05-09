@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { article } from '../model/article';
+import {Article} from '../model/article';
 
 @Component({
   selector: 'app-article-preview',
@@ -9,23 +9,24 @@ import { article } from '../model/article';
   styleUrl: './article-preview.component.css'
 })
 export class ArticlePreviewComponent {
-  private _article: article = {
+  private _article: Article = {
     id: "error",
-    name: "Fallo al recibir la información",
-    cover: "https://learn.microsoft.com/es-es/windows/win32/uxguide/images/mess-error-image15.png",
-    autor: "Error",
-    text: "Error al recibir información",
+    title: "Fallo al recibir la información",
+    imageUrl: "https://learn.microsoft.com/es-es/windows/win32/uxguide/images/mess-error-image15.png",
+    author: "Error",
+    date: "error",
+    paragraphs: [],
     smallPreview: "https://learn.microsoft.com/es-es/windows/win32/uxguide/images/mess-error-image15.png"
   };
 
   @Input()
-  set article(value: article) {
+  set article(value: Article) {
     if (value) {
       this._article = value;
     }
   }
 
-  get article(): article {
+  get article(): Article {
     return this._article;
   }
 }
