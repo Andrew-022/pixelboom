@@ -1,0 +1,36 @@
+main {
+  display: flex;
+}
+.article {
+  flex: 2;
+  padding: 20px;
+}
+.side-column {
+  flex: 1;
+  padding: 20px;
+}
+.article h1 {
+  text-align: center;
+  font-weight: bold;
+}
+.author {
+  font-weight: bold;
+}
+.date {
+  color: #888;
+}
+.article .banner-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  margin-bottom: 3%;
+}
+.article .banner-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.article p{
+  text-align: justify;
+  font-size: large;
+}

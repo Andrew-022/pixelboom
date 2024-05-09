@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {FirebaseAuthService} from "./services/firebase-auth.service";
+import {ArticleComponent} from "./article/article.component";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import {FirebaseAuthService} from "./services/firebase-auth.service";
   imports: [
     RouterOutlet,
     FontAwesomeModule,
-    NavbarComponent
+    NavbarComponent,
+    ArticleComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
