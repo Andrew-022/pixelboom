@@ -4,6 +4,7 @@
   justify-content: center;
   height: 30px;
   margin: 0;
+  padding: 2em 0em 2em 0em;
 }
 
 .line {
@@ -19,8 +20,20 @@
   font-size: 130%;
 }
 
-.games{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2%;
+/*.games{*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(5, 1fr);*/
+/*  gap: 2%;*/
+/*}*/
+
+.games {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.game-item {
+  display: flex;
+  padding: 0.5em 0.5em 0.5em 0.5em;
 }

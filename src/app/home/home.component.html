@@ -1,12 +1,16 @@
 <body>
 <div class="container">
   <div class="line"></div>
-  <div id= "textOpinion" class="centered-word">Juegos Top/Novedades</div>
+  <div id= "textOpinion" class="centered-word">
+    <h1>Juegos Top/Novedades</h1>
+  </div>
   <div class="line"></div>
 </div>
 <article class="games">
   @for(game of games; track game) {
-    <app-game-view [game] = "game" ></app-game-view>
+    <div class="game-item">
+      <app-game-view [game] = "game"></app-game-view>
+    </div>
   }
 </article>
 </body>
