@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {collection, collectionData, doc, DocumentSnapshot, Firestore, getDoc} from "@angular/fire/firestore";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {game} from "../model/game";
 import {Article} from "../model/article";
 
@@ -14,8 +14,17 @@ export class firebaseRepository {
   async getAllGames(){
     return collectionData(collection(this._firestore,"games")) as Observable<game[]>
   }
-  async getAllArticles(){
-    return collectionData(collection(this._firestore,"articles")) as Observable<Article[]>
+  async getAllArticles(): Promise<Observable<Article[]>> {
+    return collectionData(collection(this._firestore, "articles")).pipe(
+      map((articles: any[]) => {
+        return articles.map(article => {
+          return {
+            ...article,
+            date: this.formatDate(article.date)
+          };
+        });
+      })
+    );
   }
   async getArticleById(articleId: string): Promise<Article | undefined> {
     try {
