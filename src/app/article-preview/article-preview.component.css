@@ -1,19 +1,29 @@
 .article-preview {
   display: flex;
+  flex-direction: column;  /* Cambiado a column para apilar verticalmente */
+  justify-content: flex-start;
+  align-items: center;
+  width: 15em;
+  height: 7em;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #D9D9D9;
+}
+
+.article-content {
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 200px; /* Ajusta el tamaño según tus necesidades */
-  height: 100px; /* Ajusta el tamaño según tus necesidades */
-  border: 1px solid black;
-  border-radius: 10px; /* Ajusta el radio de las esquinas según tus necesidades */
-  padding: 10px;
+  width: 100%;  /* Usa el ancho total del .article-preview */
+  height: 80%;  /* Usa el 80% del alto del .article-preview */
 }
 
 .article-preview img {
-  width: 50px; /* Ajusta el tamaño según tus necesidades */
-  height: 50px; /* Ajusta el tamaño según tus necesidades */
+  width: 50px;
+  height: 50px;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 .article-info {
@@ -24,10 +34,22 @@
 
 .article-info h2 {
   margin: 0;
-  font-size: 1em; /* Ajusta el tamaño de la fuente según tus necesidades */
+  font-size: 1em;
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.5;
 }
 
 .article-info p {
   margin: 0;
-  font-size: 0.8em; /* Ajusta el tamaño de la fuente según tus necesidades */
+  font-size: 0.8em;
 }
+
+h4 {
+  width: 100%;
+  font-size: 0.8em;
+  text-align: left;
+  margin: 0;
+  padding-top: 5px;
+}
+
