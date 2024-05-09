@@ -12,7 +12,7 @@ export class ArticlePreviewComponent {
   private _article: Article = {
     id: "error",
     title: "Fallo al recibir la información",
-    imageUrl: "https://learn.microsoft.com/es-es/windows/win32/uxguide/images/mess-error-image15.png",
+    imageUrl: "https://yt3.googleusercontent.com/ytc/AIdro_nQDRMfNCBCUumCBMlgwAwrVCNYZPmI6wnUME9B5EmxYNY=s900-c-k-c0x00ffffff-no-rj",
     author: "Error",
     date: "error",
     paragraphs: [],

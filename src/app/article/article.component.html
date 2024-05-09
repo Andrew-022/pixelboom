@@ -4,7 +4,7 @@
       <h1>{{article.title}}</h1>
       <p><span class="author">{{article.author}}</span> | <span class="date">{{article.date}}</span></p>
       <div class="banner-container">
-        <img src="https://assets-prd.ignimgs.com/2024/02/09/helldivers2-blogroll-1707522009783.jpg">
+        <img src="{{article.imageUrl}}">
       </div>
       <div id="dataBaseText">
         @for (p of this.article.paragraphs; track p){
