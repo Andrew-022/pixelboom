@@ -8,4 +8,5 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'game/:name', component: GameComponent},
   { path: 'article/:id', component: ArticleComponent },
+  { path: '**', redirectTo: 'home' },
 ];
