@@ -1,0 +1,33 @@
+.article-preview {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px; /* Ajusta el tamaño según tus necesidades */
+  height: 100px; /* Ajusta el tamaño según tus necesidades */
+  border: 1px solid black;
+  border-radius: 10px; /* Ajusta el radio de las esquinas según tus necesidades */
+  padding: 10px;
+}
+
+.article-preview img {
+  width: 50px; /* Ajusta el tamaño según tus necesidades */
+  height: 50px; /* Ajusta el tamaño según tus necesidades */
+  margin-right: 10px;
+}
+
+.article-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-info h2 {
+  margin: 0;
+  font-size: 1em; /* Ajusta el tamaño de la fuente según tus necesidades */
+}
+
+.article-info p {
+  margin: 0;
+  font-size: 0.8em; /* Ajusta el tamaño de la fuente según tus necesidades */
+}
