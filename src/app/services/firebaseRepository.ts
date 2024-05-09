@@ -14,6 +14,9 @@ export class firebaseRepository {
   async getAllGames(){
     return collectionData(collection(this._firestore,"games")) as Observable<game[]>
   }
+  async getAllArticles(){
+    return collectionData(collection(this._firestore,"articles")) as Observable<Article[]>
+  }
   async getArticleById(articleId: string): Promise<Article | undefined> {
     try {
       const docRef = doc(this._firestore, "articles", articleId);

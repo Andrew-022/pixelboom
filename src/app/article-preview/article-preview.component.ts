@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {Article} from '../model/article';
+import {Router} from "@angular/router";
+import {GameNavigatorService} from "../services/game-navigator.service";
 
 @Component({
   selector: 'app-article-preview',
@@ -9,6 +11,7 @@ import {Article} from '../model/article';
   styleUrl: './article-preview.component.css'
 })
 export class ArticlePreviewComponent {
+  constructor(private router: Router, private gameNavigator: GameNavigatorService) { }
   private _article: Article = {
     id: "error",
     title: "Fallo al recibir la información",
@@ -25,7 +28,10 @@ export class ArticlePreviewComponent {
       this._article = value;
     }
   }
-
+  onClick() {
+    this.gameNavigator.setArticle(this._article);
+    this.router.navigate(['/article/', this._article.id]);
+  }
   get article(): Article {
     return this._article;
   }

@@ -1,6 +1,6 @@
-<div class="article-preview">
+<div class="article-preview" (click)="onClick()">
   <div class="article-content">
-    <img src="{{article.smallPreview}}" alt="Article cover">
+    <img [src]="article.smallPreview" alt="Article cover">
     <div class="article-info">
       <h2>{{ article.title }}</h2>
     </div>
