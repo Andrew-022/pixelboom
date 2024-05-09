@@ -13,6 +13,21 @@
     </div>
   }
 </article>
+
+<div class="container">
+  <div class="line"></div>
+  <div class="centered-word">
+    <h1>Últimos Artículos</h1>
+  </div>
+  <div class="line"></div>
+</div>
+
+<div class = articles-container>
+  @for(article of articles; track article) {
+    <app-article-preview [article] = "article" ></app-article-preview>
+  }
+</div>
+
 </body>
 
 
