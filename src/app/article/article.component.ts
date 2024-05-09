@@ -2,6 +2,7 @@ import {Component, untracked} from '@angular/core';
 import {Article} from "../model/article";
 import {firebaseRepository} from "../services/firebaseRepository";
 import {ActivatedRoute} from "@angular/router";
+import {GameNavigatorService} from "../services/game-navigator.service";
 
 @Component({
   selector: 'app-article',
@@ -16,25 +17,12 @@ export class ArticleComponent {
   error=false;
   paragraphs: string[] = [];
 
-  constructor(private firebaseRepository: firebaseRepository, private route: ActivatedRoute) { }
+  constructor(private firebaseRepository: firebaseRepository, private route: ActivatedRoute, private gameNavigator: GameNavigatorService) { }
 
   ngOnInit(): void {
-    this.getArticle();
+    this.article = this.gameNavigator.getArticle();
+
   }
 
-  getArticle(): void {
-    this.route.paramMap.subscribe(async params => {
-      const id = params.get('id');
-      if (id !== null) {
-        this.articleId = id; //
 
-        if (this.articleId) {
-          this.article = await this.firebaseRepository.getArticleById(this.articleId);
-          if (!this.article) {
-            this.error = true;
-          }
-        }
-      }
-    });
-  }
 }
