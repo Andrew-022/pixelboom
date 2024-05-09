@@ -4,4 +4,5 @@ export interface game {
   cover: string;
   score: number;
   nReviews: number;
+  sinopsis: string;
 }

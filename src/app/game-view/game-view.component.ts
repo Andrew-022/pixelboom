@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {game} from "../model/game"
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {GameNavigatorService} from "../services/game-navigator.service";
 @Component({
   selector: 'app-game-view',
   standalone: true,
@@ -12,4 +13,10 @@ import {RouterLink} from "@angular/router";
 })
 export class GameViewComponent {
   @Input() game!: game;
+
+  constructor(private router: Router, private gameNavigator: GameNavigatorService) { }
+  onClick() {
+    this.gameNavigator.setGame(this.game);
+    this.router.navigate(['/game/', this.game.name]);
+  }
 }

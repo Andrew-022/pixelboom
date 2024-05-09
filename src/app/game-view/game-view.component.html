@@ -1,4 +1,4 @@
-<div class="gamePreview" routerLink="/game/{{ game.name }}">
+<div class="gamePreview" (click)="onClick()">
   <img class="gameCover" src="{{game.cover}}" [class.good]="game.score > 70" [class.mid]="game.score<=70 && game.score>35" alt="{{game.name}}">
   <b class="gameTitle">{{ game.name }}</b>
   <div class="gameInfo">

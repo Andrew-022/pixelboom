@@ -1,1 +1,54 @@
-<p>game works!</p>
+@if(game) {
+  <main>
+    <div class="about">
+      <div class="left-about">
+        <div class="game-image">
+          <img src="{{ game.cover }}">
+        </div>
+        <div class="game-about">
+          <h2>Acerca de</h2>
+          <p>{{ game.sinopsis }}</p>
+        </div>
+      </div>
+      <div class="right-about">
+        <div class="game-score">
+          <div class="game-details">
+            <div class="game-details title">
+              <h1>{{ game.name }}</h1>
+              <div class="game-details score" [class.good]="game.score > 70" [class.mid]="game.score<=70 && game.score>35">
+                {{ game.score }}
+              </div>
+            </div>
+            <div class="game-details content">
+              <p>Fecha de lanzamiento: </p>
+              <p>Distribuidora: </p>
+              <p>Plataformas: </p>
+              <p>Géneros: </p>
+            </div>
+          </div>
+        </div>
+        <div class="game-actions">
+          <div class="game-actions add-game">
+          <span>
+            <fa-icon [icon]="faCirclePlus" size="xl"></fa-icon>
+            Añadir a mis juegos
+          </span>
+          </div>
+          <div class="game-actions add-review">
+          <span>
+            <fa-icon [icon]="faMessage" size="xl"></fa-icon>
+            Dejar una review
+          </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="latest-articles">
+      <h2>Últimos artículos</h2>
+    </div>
+    <div class="user-reviews">
+      <h2>Reviews de los usuarios</h2>
+    </div>
+  </main>
+}
+
