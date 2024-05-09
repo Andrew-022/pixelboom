@@ -13,6 +13,17 @@
     </div>
   }
 </article>
+
+<div class = articles-container>
+  @for(article of articles; track article) {
+    <app-article-preview [article] = "article" ></app-article-preview>
+  }
+</div>
+
+
+
+
+
 </body>
 
 
