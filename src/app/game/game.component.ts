@@ -9,13 +9,16 @@ import {Observable} from "rxjs";
 import {GameNavigatorService} from "../services/game-navigator.service";
 import {ArticlePreviewComponent} from "../article-preview/article-preview.component";
 import {Article} from "../model/article";
+import {ReviewPreviewComponent} from "../review-preview/review-preview.component";
+import {Review} from "../model/review";
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [
     FaIconComponent,
-    ArticlePreviewComponent
+    ArticlePreviewComponent,
+    ReviewPreviewComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
@@ -26,13 +29,14 @@ export class GameComponent implements OnInit{
 
   game!: game | undefined;
   gameArticles: Article[] = [];
+  gameReviews: Review[] = [];
   constructor(private gameNavigator: GameNavigatorService ,private firebaseRepository: firebaseRepository, private route: ActivatedRoute) { }
 
   async ngOnInit() {
     this.game = this.gameNavigator.getGame();
 
     if(this.game?.articles) {
-      for(let art of this.game?.articles) {
+      for(let art of this.game.articles) {
         await this.firebaseRepository.getArticleById(art).then(
           (article => {
             if(article) {
@@ -41,6 +45,20 @@ export class GameComponent implements OnInit{
           })
         );
       }
+    }
+
+    if(this.game?.reviews) {
+      for(let rev of this.game.reviews) {
+        await this.firebaseRepository.getReviewById(rev).then(
+          (review => {
+            if(review) {
+              this.gameReviews.push(review as Review);
+            }
+            console.log(review)
+          })
+        );
+      }
+
     }
   }
 }

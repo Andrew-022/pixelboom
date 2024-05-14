@@ -1,5 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Review} from "../model/review";
+import {User} from "../model/user";
+import {firebaseRepository} from "../services/firebaseRepository";
+import {user} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-review-preview',
@@ -8,17 +11,33 @@ import {Review} from "../model/review";
   templateUrl: './review-preview.component.html',
   styleUrl: './review-preview.component.css'
 })
-export class ReviewPreviewComponent {
+export class ReviewPreviewComponent implements OnInit{
 
-  mockupImage: string = "";
+  mockupImage: string = "https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png";
+  username!: string;
 
   private _review: Review = {
     userId: "",
     gameId: "",
-    rating: "0",
+    rating: 0,
     title: "",
     review: "Error",
   };
+
+  constructor(public firebaseRepository: firebaseRepository) { }
+  async ngOnInit() {
+    try {
+      console.log("User id = ", this._review.userId);
+      this.firebaseRepository.getUsernameById(this._review.userId).then(
+        (username => {
+          this.username = username;
+        })
+      )
+    } catch (error) {
+      this.username = "";
+      console.error("No se ha podido encontrar el nombre de usuario.");
+    }
+  }
 
   @Input()
   set review(value: Review) {

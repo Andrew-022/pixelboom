@@ -14,7 +14,9 @@
         <div class="game-score">
           <div class="game-details">
             <div class="game-details title">
-              <h1>{{ game.name }}</h1>
+              <div class="game-details title text">
+                <h1>{{ game.name }}</h1>
+              </div>
               <div class="game-details score" [class.good]="game.score > 70" [class.mid]="game.score<=70 && game.score>35">
                 {{ game.score }}
               </div>
@@ -53,10 +55,11 @@
     </div>
     <div class="user-reviews">
       <h2>Reviews de los usuarios</h2>
-      <div class="articles-container">
-
+      <div class="reviews-container">
+        @for(review of gameReviews; track review) {
+          <app-review-preview [review] = "review" ></app-review-preview>
+        }
       </div>
-
     </div>
   </main>
 }

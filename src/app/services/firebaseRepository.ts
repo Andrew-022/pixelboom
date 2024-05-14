@@ -3,6 +3,7 @@ import {collection, collectionData, doc, DocumentSnapshot, Firestore, getDoc} fr
 import {map, Observable} from "rxjs";
 import {game} from "../model/game";
 import {Article} from "../model/article";
+import {Review} from "../model/review";
 
 @Injectable({
   providedIn: "root",
@@ -26,6 +27,7 @@ export class firebaseRepository {
       })
     );
   }
+
   async getArticleById(articleId: string): Promise<Article | undefined> {
     try {
       const docRef = doc(this._firestore, "articles", articleId);
@@ -47,6 +49,44 @@ export class firebaseRepository {
       return undefined;
     }
   }
+
+  async getReviewById(reviewId: string): Promise<Review | undefined> {
+    try {
+      const docRef = doc(this._firestore, "reviews", reviewId);
+      const docSnap: DocumentSnapshot<any> = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const reviewData = docSnap.data();
+        return {
+          ...reviewData,
+        };
+      } else {
+        console.log("No se encontró ningún review con el ID proporcionado.");
+        return undefined;
+      }
+    } catch (error) {
+      console.error("Error al obtener el review:", error);
+      return undefined;
+    }
+  }
+
+  async getUsernameById(userId: string): Promise<string> {
+    try {
+      const docRef = doc(this._firestore, "users", userId);
+      const docSnap: DocumentSnapshot<any> = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        return userData.username;
+      } else {
+        console.log("No se encontró ningún usuario con el ID proporcionado.");
+        return "";
+      }
+    } catch (error) {
+      console.error("Error al obtener el usuario:", error);
+      return "";
+    }
+  }
+
   private formatDate(timestamp: any): string {
     const dateObject = new Date(timestamp.seconds * 1000);
     const day = dateObject.getDate();
@@ -56,7 +96,4 @@ export class firebaseRepository {
     return `${day}/${month}/${year}`;
   }
 
-  private getReviewsByGame(game: game) {
-
-  }
 }
