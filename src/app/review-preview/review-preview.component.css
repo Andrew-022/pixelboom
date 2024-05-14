@@ -84,5 +84,6 @@
   justify-content: flex-start;
   align-content: flex-start;
   padding: 0.5em 0.5em 0.5em 0.5em;
+  flex-direction: column;
 }
 
