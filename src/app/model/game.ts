@@ -5,4 +5,6 @@ export interface game {
   score: number;
   nReviews: number;
   sinopsis: string;
+  reviews: string[];
+  articles: string[];
 }

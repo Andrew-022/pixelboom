@@ -7,12 +7,15 @@ import {firebaseRepository} from "../services/firebaseRepository";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {GameNavigatorService} from "../services/game-navigator.service";
+import {ArticlePreviewComponent} from "../article-preview/article-preview.component";
+import {Article} from "../model/article";
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [
-    FaIconComponent
+    FaIconComponent,
+    ArticlePreviewComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
@@ -21,10 +24,23 @@ export class GameComponent implements OnInit{
   protected readonly faCirclePlus = faCirclePlus;
   protected readonly faMessage = faMessage;
 
+  game!: game | undefined;
+  gameArticles: Article[] = [];
   constructor(private gameNavigator: GameNavigatorService ,private firebaseRepository: firebaseRepository, private route: ActivatedRoute) { }
-  game: game | undefined;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.game = this.gameNavigator.getGame();
+
+    if(this.game?.articles) {
+      for(let art of this.game?.articles) {
+        await this.firebaseRepository.getArticleById(art).then(
+          (article => {
+            if(article) {
+              this.gameArticles.push(article as Article);
+            }
+          })
+        );
+      }
+    }
   }
 }

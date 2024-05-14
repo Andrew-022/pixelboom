@@ -125,6 +125,16 @@ main {
 .latest-articles, .user-reviews {
   width: 95%;
 }
+
+.articles-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 10%;
+}
+
 @media screen and (max-width: 1919px) {
   .left-about {
     width: 100%;

@@ -55,4 +55,8 @@ export class firebaseRepository {
 
     return `${day}/${month}/${year}`;
   }
+
+  private getReviewsByGame(game: game) {
+
+  }
 }

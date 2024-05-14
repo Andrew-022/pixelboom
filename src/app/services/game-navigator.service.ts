@@ -10,10 +10,6 @@ export class GameNavigatorService {
   private article!: Article;
   constructor() { }
 
-  setGame(game: any): void {
-    this.game = game;
-  }
-
   setArticle(article: Article): void {
     this.article = article;
   }
@@ -22,6 +18,9 @@ export class GameNavigatorService {
     return this.article;
   }
 
+  setGame(game: any): void {
+    this.game = game;
+  }
 
   getGame(): any {
     return this.game;
