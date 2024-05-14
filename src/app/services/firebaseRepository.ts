@@ -14,7 +14,6 @@ import {game} from "../model/game";
 import {Article} from "../model/article";
 import {Review} from "../model/review";
 import {getAuth} from "@angular/fire/auth";
-import {runTransaction} from "@angular/fire/database";
 
 @Injectable({
   providedIn: "root",
@@ -109,12 +108,13 @@ export class firebaseRepository {
         const updatedReviews = [...currentReviews, review];
         const nReviews = updatedReviews.length;
         let currentScore = data['score'] || 0; // Si score no está definido, se asume 0
-        const newScore = (currentScore *); // Calcular nuevo scor
+        const newScore = (currentScore * (nReviews-1) + score) / nReviews; // Calcular nuevo score
+        const truncatedScore = parseFloat(newScore.toFixed(1)); // Truncar a dos decimales
 
         await updateDoc(documentRef, {
           ['reviews']: updatedReviews,
           ['nReviews']: nReviews,
-          ['score']: newScore
+          ['score']: truncatedScore
         });
 
         console.log("Valor añadido al array 'reviews', 'nReviews' y 'score' actualizados correctamente.");
