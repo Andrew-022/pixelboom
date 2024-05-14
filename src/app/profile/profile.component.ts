@@ -78,7 +78,7 @@ export class ProfileComponent {
             } else {
               console.log("Ha habido un error al cargar la imagen.");
             }
-            this.getUserData();
+            window.location.reload();
           }
         );
       }
@@ -86,7 +86,7 @@ export class ProfileComponent {
         this.authService.updateData(this.user.username).then(
           () => {
             this.profilemessage="Cambios realizados con éxito";
-            this.getUserData();
+            window.location.reload();
           }
         );
       }
