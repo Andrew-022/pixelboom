@@ -113,6 +113,26 @@ export class firebaseRepository {
     }
   }
 
+  async getUserDataById(userId: string): Promise<any> {
+      try {
+        const docRef = doc(this._firestore, "users", userId);
+        const docSnap: DocumentSnapshot<any> = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          return {
+            ...userData,
+          };
+        } else {
+          console.log("No se encontró ningún usuario con el ID proporcionado.");
+          return undefined;
+        }
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+        return undefined;
+      }
+  }
+
+
   private formatDate(timestamp: any): string {
     const dateObject = new Date(timestamp.seconds * 1000);
     const day = dateObject.getDate();

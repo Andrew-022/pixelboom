@@ -1,28 +1,29 @@
-<div class="review-preview">
-  <div class="review-profileImage">
-    <div class="review-profileImage image">
-      <img [src]="mockupImage" alt="Review cover">
+@if(user){
+  <div class="review-preview">
+    <div class="review-profileImage">
+      <img class="profile-picture"[src]="user.profilePictureURL" alt="Review cover">
+      <div class="review-profileImage padding"></div>
     </div>
-    <div class="review-profileImage padding"></div>
-  </div>
-  <div class="review-content">
-    <div class="review-score-title">
-      <div class="review-score-title score">
-        <div class="review-score-title circle" [class.good]="review.rating > 70" [class.mid]="review.rating<=70 && review.rating>35">
-          {{ review.rating }}
+    <div class="review-content">
+      <div class="review-score-title">
+        <div class="review-score-title score">
+          <div class="review-score-title circle" [class.good]="review.rating > 70" [class.mid]="review.rating<=70 && review.rating>35">
+            {{ review.rating }}
+          </div>
+        </div>
+        <div class="review-score-title title">
+          <h2>{{ review.title }}</h2>
         </div>
       </div>
-      <div class="review-score-title title">
-        <h2>{{ review.title }}</h2>
-      </div>
-    </div>
-    <div class="review-info">
-      <div class="review-info.review">
-        <p>{{ review.review }}</p>
-      </div>
-      <div class="review-info.user">
-        <p>By: {{ username }}</p>
+      <div class="review-info">
+        <div class="review-info.review">
+          <p>{{ review.review }}</p>
+        </div>
+        <div class="review-info.user">
+          <p>By: {{ user.username }}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}
+

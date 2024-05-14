@@ -14,7 +14,7 @@ import {user} from "@angular/fire/auth";
 export class ReviewPreviewComponent implements OnInit{
 
   mockupImage: string = "https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png";
-  username!: string;
+  user: User | null = null;
 
   private _review: Review = {
     userId: "",
@@ -28,13 +28,12 @@ export class ReviewPreviewComponent implements OnInit{
   async ngOnInit() {
     try {
       console.log("User id = ", this._review.userId);
-      this.firebaseRepository.getUsernameById(this._review.userId).then(
-        (username => {
-          this.username = username;
+      this.firebaseRepository.getUserDataById(this._review.userId).then(
+        (user => {
+          this.user = user as User;
         })
       )
     } catch (error) {
-      this.username = "";
       console.error("No se ha podido encontrar el nombre de usuario.");
     }
   }
