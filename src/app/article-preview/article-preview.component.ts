@@ -14,12 +14,13 @@ export class ArticlePreviewComponent {
   constructor(private router: Router, private gameNavigator: GameNavigatorService) { }
   private _article: Article = {
     id: "error",
-    title: "Fallo al recibir la información",
+    title: "Fallo al recibir la information",
     imageUrl: "https://yt3.googleusercontent.com/ytc/AIdro_nQDRMfNCBCUumCBMlgwAwrVCNYZPmI6wnUME9B5EmxYNY=s900-c-k-c0x00ffffff-no-rj",
     author: "Error",
     date: "error",
     paragraphs: [],
-    smallPreview: "https://learn.microsoft.com/es-es/windows/win32/uxguide/images/mess-error-image15.png"
+    smallPreview: "https://learn.microsoft.com/es-es/windows/win32/uxguide/images/mess-error-image15.png",
+    gameId: ""
   };
 
   @Input()
