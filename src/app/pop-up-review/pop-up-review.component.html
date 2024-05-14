@@ -1,0 +1,16 @@
+<div id="popup">
+  <div class="popup-content">
+    <h2 class="commenttext" >¿Qué puntuación le das a  <span id="tittleSpan3">{{ data.name }}</span>?</h2>
+    <div class="slide-container">
+      <p id="puntuation" class="puntuacion-circulo" [class.good]="sliderValue > 70" [class.mid]="sliderValue<=70 && sliderValue>35">{{sliderValue}} </p>
+      <input type="range" min="0" max="100" [(ngModel)]="sliderValue">
+    </div>
+    <div class="label">
+      Título: <textarea class="stream_textarea" rows="1" placeholder="Título de la review"></textarea>
+    </div>
+    <div class="label">
+      Review: <textarea class="stream_textarea" id="review"   placeholder="¿Qué te ha parecido?" ></textarea>
+    </div>
+    <button id="submitComment" class="boton-generico">Enviar</button>
+  </div>
+</div>
