@@ -1,8 +1,19 @@
 import {inject, Injectable} from "@angular/core";
-import {collection, collectionData, doc, DocumentSnapshot, Firestore, getDoc} from "@angular/fire/firestore";
+import {
+  addDoc, arrayUnion,
+  collection,
+  collectionData,
+  doc,
+  DocumentSnapshot,
+  Firestore,
+  getDoc,
+  updateDoc
+} from "@angular/fire/firestore";
 import {map, Observable} from "rxjs";
 import {game} from "../model/game";
 import {Article} from "../model/article";
+import {Review} from "../model/review";
+import {getAuth} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: "root",
@@ -59,4 +70,31 @@ export class firebaseRepository {
   private getReviewsByGame(game: game) {
 
   }
+
+  async addReview(review: Review): Promise<void> {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    try {
+      review.userId = user?.uid ?? '';
+      console.log(review);
+      const docRef = await addDoc(collection(this._firestore, `reviews`), review);
+      console.log("Review añadida correctamente con ID:", docRef.id);
+      this.addReviewToArray(docRef.id, review.gameId);
+    } catch (error) {
+      console.error("Error al añadir la review:", error);
+    }
+  }
+
+  async addReviewToArray(review: string, documentId: string): Promise<void> {
+    try {
+      const documentRef = doc(this._firestore, 'games', documentId);
+      await updateDoc(documentRef, {
+        reviews: arrayUnion(review)
+      });
+      console.log("Valor añadido al array 'reviews' correctamente.");
+    } catch (error) {
+      console.error("Error al añadir valor al array 'reviews':", error);
+    }
+  }
+
 }
