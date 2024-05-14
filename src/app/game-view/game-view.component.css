@@ -48,6 +48,7 @@
 }
 
 .puntuacion-circulo{
+  aspect-ratio: 1/1;
   width: 75px; /* Ajusta el tamaño del círculo según tus necesidades */
   height: 75px;
   border-radius: 50%; /* Hace que el borde sea redondeado, creando un círculo */

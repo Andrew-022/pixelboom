@@ -74,8 +74,8 @@ main {
 }
 
 .game-details.score {
-  width: 8%;
-  height: 8%;
+  aspect-ratio: 1/1;
+  width: 13%;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -142,7 +142,7 @@ main {
   flex-direction: column;
 }
 
-@media screen and (max-width: 1100px) {
+@media only screen and (max-width: 1100px) {
   .left-about {
     width: 100%;
   }
