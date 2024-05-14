@@ -13,6 +13,11 @@
       </div>
     </div>
     <div class="side-column">
+
+      @if(game){
+        <h2>This article belongs to the game:</h2>
+        <app-game-view [game] = game ></app-game-view>
+      }
       <h2>Most Popular</h2>
       @for(articlePreview of articles; track article) {
         <app-article-preview [article] = "articlePreview" ></app-article-preview>

@@ -47,6 +47,21 @@ export class firebaseRepository {
       return undefined;
     }
   }
+  async getGameById(gameId: string): Promise<game | undefined> {
+    try {
+      const docRef = doc(this._firestore, "games", gameId);
+      const docSnap: DocumentSnapshot<any> = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return { ...docSnap.data(), id: docSnap.id } as game;
+      } else {
+        console.log("No se encontró ningún artículo con el ID proporcionado.");
+        return undefined;
+      }
+    } catch (error) {
+      console.error("Error al obtener el artículo:", error);
+      return undefined;
+    }
+  }
   private formatDate(timestamp: any): string {
     const dateObject = new Date(timestamp.seconds * 1000);
     const day = dateObject.getDate();
