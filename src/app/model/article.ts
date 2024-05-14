@@ -6,4 +6,5 @@ export interface Article {
   imageUrl: string;
   paragraphs: string[];
   smallPreview: string;
+  gameId: string
 }

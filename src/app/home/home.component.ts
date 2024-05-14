@@ -23,26 +23,9 @@ export class HomeComponent {
 
   games: game[] = [];
 
-  article1: Article = {
-    id: "1",
-    title: "Una cosa es una cosa, y otra cosa es otra cosa",
-    imageUrl: "https://assets-prd.ignimgs.com/2024/02/09/helldivers2-blogroll-1707522009783.jpg",
-    author: "Cervantes",
-    paragraphs: ["This is a test article 1."],
-    date: "error",
-    smallPreview: "https://sm.ign.com/t/ign_es/cover/h/helldivers/helldivers-ii_7br6.128.jpg"
-  };
-  article2: Article = {
-    id: "2",
-    title: "Son dos cosas totalmente diferentes, evidentemente",
-    imageUrl: "https://assets-prd.ignimgs.com/2024/02/09/helldivers2-blogroll-1707522009783.jpg",
-    author: "Cervantes de nuevo",
-    paragraphs: ["This is a test article 2."],
-    date: "error",
-    smallPreview: "https://assets-prd.ignimgs.com/2024/02/09/helldivers2-blogroll-1707522009783.jpg"
-  };
 
-  articles: Article[] = [this.article1, this.article2];
+
+  articles: Article[] = []
 
   constructor(private firebaseRepository: firebaseRepository) { }
   async ngOnInit(): Promise<void> {
