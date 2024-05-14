@@ -1,15 +1,16 @@
 main {
   display: flex;
 }
-.article {
+.article-main {
   flex: 2;
   padding: 20px;
 }
 .side-column {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
 }
-.article h1 {
+.article-main h1 {
   text-align: center;
   font-weight: bold;
 }
@@ -19,13 +20,13 @@ main {
 .date {
   color: #888;
 }
-.article .banner-container {
+.article-main .banner-container {
   width: 100%;
   height: 300px;
   overflow: hidden;
   margin-bottom: 3%;
 }
-.article .banner-container img {
+.article-main .banner-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -33,4 +34,8 @@ main {
 .article p{
   text-align: justify;
   font-size: large;
+}
+
+app-article-preview {
+  margin-bottom: 2%;
 }

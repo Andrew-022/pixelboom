@@ -3,6 +3,12 @@ body {
   color: #071F4D;
 }
 
+.error-message{
+  color: red;
+  margin: 1%;
+}
+
+
 .popup-content {
   width: 35vw;
   background-color: #95B8D1;

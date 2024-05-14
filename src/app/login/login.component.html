@@ -6,6 +6,9 @@
   </div>
   <div class="loginmsg">{{ loginMsg }}</div>
   <form class="popup-form" id="popup-form" [formGroup]="loginForm" (ngSubmit)="submit()">
+    @if(errorMessage){
+      <div class="error-message">{{ errorMessage }}</div>
+    }
     <label class="popup-label" for="username">Correo electrónico</label>
     <input class="popup-input" type="text" id="username" formControlName="loginMail" required>
     <label class="popup-label" for="password">Contraseña</label>
