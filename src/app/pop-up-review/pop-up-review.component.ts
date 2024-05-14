@@ -15,7 +15,7 @@ import { firebaseRepository } from "../services/firebaseRepository";
   styleUrl: './pop-up-review.component.css'
 })
 export class PopUpReviewComponent {
-  sliderValue: number = 0;
+  sliderValue: number = 66;
 
   review: Review = {
     gameId: this.data.id,
