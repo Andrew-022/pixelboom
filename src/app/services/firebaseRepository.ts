@@ -163,4 +163,30 @@ export class firebaseRepository {
       console.error("Error al añadir valor al array 'reviews':", error);
     }
   }
+
+  async getUserData(): Promise<any> {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if(user){
+      try {
+        const docRef = doc(this._firestore, "users", user?.uid);
+        const docSnap: DocumentSnapshot<any> = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          return {
+            ...userData,
+          };
+        } else {
+          console.log("No se encontró ningún usuario con el ID proporcionado.");
+          return undefined;
+        }
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+        return undefined;
+      }
+    }
+  }
+
 }

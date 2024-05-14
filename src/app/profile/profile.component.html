@@ -1,0 +1,28 @@
+@if(user){
+  <div class="imagen-perfil">
+    <h2>Imagen de perfil</h2>
+    <div>
+      <img [src]="urlImagenPerfil" alt="Imagen de perfil">
+      <div>
+        <button (click)="fileInput.click()">Actualizar imagen de perfil</button>
+        <p>El formato debe ser JPEG o PNG y no puede superar los 10 MB.</p>
+        <input hidden type="file" accept="image/png, image/jpeg" #fileInput (change)="uploadProfilePicture($event)">
+      </div>
+    </div>
+  </div>
+
+  <div class="ajustes-perfil">
+    <h2>Ajustes del perfil</h2>
+    <label for="nombrePerfil">Nombre de perfil:</label>
+    <input type="text" id="nombrePerfil" [(ngModel)]="user.username" [readonly]="!isEditingNombre" [ngClass]="{'editar': !isEditingNombre}">
+    <button (click)="toggleEditNombre()"><i class="fa fa-pencil"></i></button>
+
+    <div class="container-buttons">
+      <button >Guardar cambios</button>
+      @if(profilemessage){
+        <div class="profile-message">{{ profilemessage }}</div>
+      }
+    </div>
+  </div>
+}
+

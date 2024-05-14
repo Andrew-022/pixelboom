@@ -9,7 +9,8 @@ import {
 import {getDownloadURL, getStorage, ref, uploadBytes} from '@angular/fire/storage';
 import {from, Observable} from "rxjs";
 import {User} from "../model/user";
-import {doc, Firestore, getDoc, getFirestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {doc, DocumentSnapshot, Firestore, getDoc, getFirestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {Review} from "../model/review";
 
 @Injectable({
   providedIn: 'root'
@@ -49,22 +50,24 @@ export class FirebaseAuthService {
     return from(promise)
   }
 
-  async getUserData(): Promise<any> {
-    const auth = getAuth();
-    const user = auth.currentUser;
 
+  async getReviewById(reviewId: string): Promise<Review | undefined> {
     try {
-      if(user) {
-        const docSnap = await getDoc(doc(this._firestore, 'users/' + user?.uid));
-        if(docSnap.exists()) {
-          console.log("Entro en getUserData")
-          return { ...docSnap.data()};
-        }
-        return;
+      const docRef = doc(this._firestore, "reviews", reviewId);
+      const docSnap: DocumentSnapshot<any> = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const reviewData = docSnap.data();
+        return {
+          ...reviewData,
+        };
+      } else {
+        console.log("No se encontró ningún review con el ID proporcionado.");
+        return undefined;
       }
     } catch (error) {
-      console.error("Ha ocurrido un error al guardar los datos:", error);
-      return [];
+      console.error("Error al obtener el review:", error);
+      return undefined;
     }
   }
   async saveUserData(username: string, last_name: string, email: string, password: string, profilePictureURL?:string) {

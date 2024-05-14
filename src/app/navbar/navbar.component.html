@@ -13,16 +13,30 @@
 
       <div class="account-items">
         @if (loggedNavbarView) {
-          <div class="dropdown">
-            <button class="dropbtn">
-              <fa-icon [icon]="faUser" size="xl"></fa-icon>
-              <span class="nav-link account">Mi cuenta</span>
-            </button>
-            <div class="dropdown-content">
-              <a routerLink="/profile">Perfil</a>
-              <a (click)="onLogout()">Cerrar sesión</a>
-            </div>
+          <div class="profile">
+            <img class="profile-picture" src="{{user.profilePictureURL}}" alt="profile picture" [matMenuTriggerFor]="menu">
           </div>
+          <mat-menu #menu="matMenu">
+            <div class="dropdown-content">
+              <div class="profile-section">
+                <img src="{{user.profilePictureURL}}" alt="profile picture" class="dropdown-profile-picture">
+                <p class="profile-name">{{user.username}}</p>
+              </div>
+              <hr class="dropdown-divider">
+              <a [routerLink]="['/profile']" ><i class="fa fa-cog icon-spacing"></i>Configuración</a>
+              <a (click)="onLogout()"  class="logout"><i class="fa-solid fa-door-closed icon-spacing"></i>Cerrar Sesión</a>
+            </div>
+          </mat-menu>
+<!--          <div class="dropdown">-->
+<!--            <button class="dropbtn">-->
+<!--              <img class="profile-picture" src="{{user.profilePictureURL}}" alt="profile picture">-->
+<!--              <span class="nav-link account">Mi cuenta</span>-->
+<!--            </button>-->
+<!--            <div class="dropdown-content">-->
+<!--              <a routerLink="/profile" >Perfil</a>-->
+<!--              <a (click)="onLogout()">Cerrar sesión</a>-->
+<!--            </div>-->
+<!--          </div>-->
         } @else {
           <div class="session" routerLink="/login">
             <fa-icon [icon]="faUser" size="xl"></fa-icon>

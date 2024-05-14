@@ -15,7 +15,7 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user: User = { name: "", email: "", apellidos: "", password: ""};
+  user: User = { username: "", email: "", last_name: "", password: "", profilePictureURL: ""};
   errorMessage: string | null = null;
   loginMsg: string = '';
   constructor(private router: Router,
