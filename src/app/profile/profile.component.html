@@ -18,7 +18,7 @@
     <button (click)="toggleEditNombre()"><i class="fa fa-pencil"></i></button>
 
     <div class="container-buttons">
-      <button >Guardar cambios</button>
+      <button (click)="submitUserData()" >Guardar cambios</button>
       @if(profilemessage){
         <div class="profile-message">{{ profilemessage }}</div>
       }

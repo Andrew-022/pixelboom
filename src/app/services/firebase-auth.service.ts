@@ -180,7 +180,7 @@ export class FirebaseAuthService {
     }
   }
 
-  async uploadProfilePicture(profilePicture: File): Promise<boolean> {
+  async uploadProfilePicture(profilePicture: File, username: String): Promise<boolean> {
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -191,7 +191,7 @@ export class FirebaseAuthService {
 
       try {
         await uploadBytes(storageRef, profilePicture);
-        await this.saveProfilePictureUrl(await getDownloadURL(storageRef))
+        await this.saveProfilePictureUrl(username ,await getDownloadURL(storageRef))
         console.log("Imagen cargada con éxito!");
         return true;
       } catch (error) {
@@ -203,7 +203,33 @@ export class FirebaseAuthService {
     }
   }
 
-  private async saveProfilePictureUrl(profilePictureURL: string) {
+  async updateData(username: String): Promise<boolean> {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', user.uid);
+
+        await updateDoc(userDocRef, {
+          username: username
+        });
+
+        console.log('Username actualizado correctamente.');
+        return true;
+      } else {
+        console.error('No se pudo encontrar al usuario actualmente autenticado.');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error al actualizar el username:', error);
+      return false;
+    }
+
+  }
+
+
+  private async saveProfilePictureUrl(username: String, profilePictureURL: string) {
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -217,7 +243,8 @@ export class FirebaseAuthService {
         if(userData && userData['profilePictureURL']) {
           console.log(userData['profilePictureURL'])
           await updateDoc(userRef, {
-            'profilePictureURL': profilePictureURL
+            ['profilePictureURL']: profilePictureURL,
+            ['username']: username,
           })
           return true;
         }

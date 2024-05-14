@@ -8,6 +8,7 @@ import {LoginComponent} from "../login/login.component";
 import {SignUpComponent} from "../sign-up/sign-up.component";
 import {User} from "../model/user";
 import {MatMenu, MatMenuTrigger} from "@angular/material/menu";
+import {firebaseRepository} from "../services/firebaseRepository";
 
 @Component({
   selector: 'app-navbar',
@@ -21,16 +22,28 @@ export class NavbarComponent {
   protected readonly faCartShopping = faCartShopping;
   protected readonly faMagnifyingGlass = faMagnifyingGlass;
   protected readonly faUserPlus = faUserPlus;
-  @Input() user!: User;
+  user: User | null = null;
 
   loggedNavbarView: boolean = false
 
-  constructor(private dialogRef: MatDialog, private authService: FirebaseAuthService , private router: Router) { }
+  constructor(private dialogRef: MatDialog, private authService: FirebaseAuthService , private router: Router, private firebaseRepository: firebaseRepository) { }
 
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
       this.loggedNavbarView = !!user;
+      this.getUserData();
     });
+  }
+
+
+  async getUserData(){
+    await this.firebaseRepository.getUserData().then(
+      (user => {
+        if(user) {
+          this.user= user as User;
+        }
+      })
+    );
   }
 
   openDialog(i: number){

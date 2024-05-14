@@ -20,7 +20,6 @@ import {firebaseRepository} from "./services/firebaseRepository";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  user: User | null = null;
   title = 'pixelboom';
   authService = inject(FirebaseAuthService)
 
@@ -35,7 +34,6 @@ export class AppComponent {
           email: user.email!,
           username: user.displayName!,
         });
-        this.getUserData();
       } else {
         this.authService.currentUserSig.set(null)
       }
@@ -43,14 +41,5 @@ export class AppComponent {
     });
   }
 
-  async getUserData(){
-    await this.firebaseRepository.getUserData().then(
-      (user => {
-        if(user) {
-          this.user= user as User;
-        }
-      })
-    );
-  }
 
 }

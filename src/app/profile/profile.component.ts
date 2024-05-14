@@ -67,4 +67,30 @@ export class ProfileComponent {
     }
   }
 
+  submitUserData() {
+    if(this.user){
+      if(this.profilePicture != null) {
+        this.authService.uploadProfilePicture(<File> this.profilePicture,this.user.username).then(
+          (response) => {
+            if(response) {
+              console.log("La imagen se ha cargado.");
+              this.profilemessage="Cambios realizados con éxito";
+            } else {
+              console.log("Ha habido un error al cargar la imagen.");
+            }
+            this.getUserData();
+          }
+        );
+      }
+      else{
+        this.authService.updateData(this.user.username).then(
+          () => {
+            this.profilemessage="Cambios realizados con éxito";
+            this.getUserData();
+          }
+        );
+      }
+    }
+  }
+
 }

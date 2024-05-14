@@ -12,7 +12,7 @@
       </form>
 
       <div class="account-items">
-        @if (loggedNavbarView) {
+        @if (loggedNavbarView && user) {
           <div class="profile">
             <img class="profile-picture" src="{{user.profilePictureURL}}" alt="profile picture" [matMenuTriggerFor]="menu">
           </div>
