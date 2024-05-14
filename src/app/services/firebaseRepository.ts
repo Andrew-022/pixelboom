@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {
-  addDoc, arrayUnion,
+  addDoc,
   collection,
   collectionData,
   doc,
@@ -14,6 +14,7 @@ import {game} from "../model/game";
 import {Article} from "../model/article";
 import {Review} from "../model/review";
 import {getAuth} from "@angular/fire/auth";
+import {runTransaction} from "@angular/fire/database";
 
 @Injectable({
   providedIn: "root",
@@ -79,22 +80,49 @@ export class firebaseRepository {
       console.log(review);
       const docRef = await addDoc(collection(this._firestore, `reviews`), review);
       console.log("Review añadida correctamente con ID:", docRef.id);
-      this.addReviewToArray(docRef.id, review.gameId);
+      this.addReviewToArray(docRef.id, review.gameId, review.rating);
     } catch (error) {
       console.error("Error al añadir la review:", error);
     }
   }
 
-  async addReviewToArray(review: string, documentId: string): Promise<void> {
+  // async addReviewToArray(review: string, documentId: string): Promise<void> {
+  //   try {
+  //     const documentRef = doc(this._firestore, 'games', documentId);
+  //     await updateDoc(documentRef, {
+  //       reviews: arrayUnion(review)
+  //     });
+  //     console.log("Valor añadido al array 'reviews' correctamente.");
+  //   } catch (error) {
+  //     console.error("Error al añadir valor al array 'reviews':", error);
+  //   }
+  // }
+
+
+  async addReviewToArray(review: string, documentId: string, score: number): Promise<void> {
     try {
       const documentRef = doc(this._firestore, 'games', documentId);
-      await updateDoc(documentRef, {
-        reviews: arrayUnion(review)
-      });
-      console.log("Valor añadido al array 'reviews' correctamente.");
+      const docSnapshot = await getDoc(documentRef);
+      if (docSnapshot.exists()) {
+        const data = docSnapshot.data();
+        const currentReviews = data['reviews'] || [];
+        const updatedReviews = [...currentReviews, review];
+        const nReviews = updatedReviews.length;
+        let currentScore = data['score'] || 0; // Si score no está definido, se asume 0
+        const newScore = (currentScore *); // Calcular nuevo scor
+
+        await updateDoc(documentRef, {
+          ['reviews']: updatedReviews,
+          ['nReviews']: nReviews,
+          ['score']: newScore
+        });
+
+        console.log("Valor añadido al array 'reviews', 'nReviews' y 'score' actualizados correctamente.");
+      } else {
+        console.error("Documento no encontrado para actualizar.");
+      }
     } catch (error) {
       console.error("Error al añadir valor al array 'reviews':", error);
     }
   }
-
 }
